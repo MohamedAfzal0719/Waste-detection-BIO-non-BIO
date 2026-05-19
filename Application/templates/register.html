@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | SmartBin</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="bg-mesh">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+<div id="mouse-trail"></div>
+
+<script>
+    document.addEventListener('mousemove', (e) => {
+        const trail = document.getElementById('mouse-trail');
+        if (trail) {
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+        }
+    });
+</script>
+
+<div class="auth-container">
+    <div class="glass-card auth-card">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <i class="fas fa-user-plus" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+            <h1 class="title-gradient">Create Account</h1>
+            <p style="color: var(--text-muted);">Join the smart waste movement</p>
+        </div>
+
+        <form method="POST" action="/do_register">
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Full Name" required class="input">
+            </div>
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email Address" required class="input">
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Password" required class="input">
+            </div>
+
+            <div class="input-group">
+                <select name="role" class="input">
+                    <option value="user">Standard User</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem; background: linear-gradient(135deg, var(--secondary), #6d28d9);">
+                <i class="fas fa-user-check"></i> Register Now
+            </button>
+        </form>
+
+        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted);">
+            Already have an account? <a href="/" style="color: var(--secondary); text-decoration: none; font-weight: 600;">Login</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

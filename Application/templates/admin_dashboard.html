@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | SmartBin</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="bg-mesh">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+<div id="mouse-trail"></div>
+
+<script>
+    document.addEventListener('mousemove', (e) => {
+        const trail = document.getElementById('mouse-trail');
+        if (trail) {
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+        }
+    });
+</script>
+
+<!-- NAVBAR -->
+<div class="navbar glass-card">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <i class="fas fa-user-shield" style="font-size: 1.5rem; color: var(--primary);"></i>
+        <h2 class="title-gradient">Admin Dashboard</h2>
+    </div>
+    <div style="display: flex; gap: 1rem;">
+        <button onclick="resetAllData()" class="btn btn-secondary">
+            <i class="fas fa-rotate"></i> Reset Data
+        </button>
+        <a href="/logout" class="btn btn-danger">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    </div>
+</div>
+
+<div class="dashboard-container">
+
+    <!-- ===============================
+         LIVE CAMERA
+    ================================== -->
+    <div class="glass-card section">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <i class="fas fa-video" style="color: var(--primary);"></i>
+            <h3>Live Camera Detection</h3>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button onclick="startCamera()" class="btn btn-primary">
+                <i class="fas fa-play"></i> Start
+            </button>
+            <button onclick="captureImage()" class="btn btn-primary">
+                <i class="fas fa-camera"></i> Capture
+            </button>
+            <button onclick="stopCamera()" class="btn btn-danger">
+                <i class="fas fa-stop"></i> Stop
+            </button>
+        </div>
+
+        <div class="camera-box">
+            <img id="cameraFeed" src="">
+        </div>
+
+        <div id="captureResult" style="margin-top: 1rem;"></div>
+    </div>
+
+    <!-- ===============================
+         UPLOAD IMAGE
+    ================================== -->
+    <div class="glass-card section">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <i class="fas fa-cloud-arrow-up" style="color: var(--secondary);"></i>
+            <h3>Upload & Detect</h3>
+        </div>
+
+        <div class="input-group">
+            <input type="file" id="adminUploadImg" class="input" accept="image/*">
+        </div>
+        <button onclick="adminUploadImage()" class="btn btn-primary" style="width: 100%; background: linear-gradient(135deg, var(--secondary), #6d28d9);">
+            <i class="fas fa-magnifying-glass"></i> Detect Waste
+        </button>
+
+        <div id="adminUploadResult" style="margin-top: 1rem;"></div>
+    </div>
+
+    <!-- ===============================
+         BIN LEVEL STATUS
+    ================================== -->
+    <div class="glass-card section bin-status-card">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <i class="fas fa-trash" style="color: var(--accent);"></i>
+            <h3>Bin Level Status</h3>
+        </div>
+        
+        <div class="bin-item">
+            <div class="bin-header">
+                <span>Bin 1 (Standard)</span>
+                <span id="bin1-text">--%</span>
+            </div>
+            <div class="progress-container">
+                <div id="bin1-bar" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="bin-item">
+            <div class="bin-header">
+                <span>Bin 2 (Hazardous)</span>
+                <span id="bin2-text">--%</span>
+            </div>
+            <div class="progress-container">
+                <div id="bin2-bar" class="progress-bar" style="background: linear-gradient(90deg, var(--accent), #059669);"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===============================
+         DETECTION HISTORY CHART
+    ================================== -->
+    <div class="glass-card section">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <h3>Waste Composition</h3>
+        </div>
+        <div class="chart-container">
+            <canvas id="detectChart"></canvas>
+        </div>
+    </div>
+
+    <!-- ===============================
+         BIN LEVEL HISTORY CHART
+    ================================== -->
+    <div class="glass-card section section-full">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <h3>Bin Filling Trends</h3>
+        </div>
+        <div class="chart-container">
+            <canvas id="binChart" style="width: 100% !important; height: 300px !important;"></canvas>
+        </div>
+    </div>
+
+</div>
+
+<script src="/static/admin.js"></script>
+</body>
+</html>

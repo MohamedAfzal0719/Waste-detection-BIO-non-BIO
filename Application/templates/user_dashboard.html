@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard | SmartBin</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="bg-mesh">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+<div id="mouse-trail"></div>
+
+<script>
+    document.addEventListener('mousemove', (e) => {
+        const trail = document.getElementById('mouse-trail');
+        if (trail) {
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+        }
+    });
+</script>
+
+<!-- NAVBAR -->
+<div class="navbar glass-card">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <i class="fas fa-chart-line" style="font-size: 1.5rem; color: var(--primary);"></i>
+        <h2 class="title-gradient">User Dashboard</h2>
+    </div>
+    <a href="/logout" class="btn btn-danger">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+</div>
+
+<div class="dashboard-container">
+
+    <!-- ===============================
+         LIVE CAMERA STREAM
+    ================================== -->
+    <div class="glass-card section">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <i class="fas fa-video" style="color: var(--primary);"></i>
+            <h3>Live Detection</h3>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button onclick="startCamera()" class="btn btn-primary">
+                <i class="fas fa-play"></i> Start
+            </button>
+            <button onclick="captureImage()" class="btn btn-primary">
+                <i class="fas fa-camera"></i> Capture
+            </button>
+            <button onclick="stopCamera()" class="btn btn-danger">
+                <i class="fas fa-stop"></i> Stop
+            </button>
+        </div>
+
+        <div class="camera-box">
+            <img id="cameraFeed" src="">
+        </div>
+
+        <div id="captureResult" style="margin-top: 1rem;"></div>
+    </div>
+
+    <!-- ===============================
+         UPLOAD IMAGE DETECTION
+    ================================== -->
+    <div class="glass-card section">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <i class="fas fa-cloud-arrow-up" style="color: var(--secondary);"></i>
+            <h3>Image Upload</h3>
+        </div>
+
+        <div class="input-group">
+            <input type="file" id="uploadImg" class="input" accept="image/*">
+        </div>
+        <button onclick="uploadImage()" class="btn btn-primary" style="width: 100%; background: linear-gradient(135deg, var(--secondary), #6d28d9);">
+            <i class="fas fa-magnifying-glass"></i> Detect Waste
+        </button>
+
+        <div id="uploadResult" style="margin-top: 1rem;"></div>
+    </div>
+
+    <!-- ===============================
+         USER HISTORY
+    ================================== -->
+    <div class="glass-card section section-full">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <i class="fas fa-history" style="color: var(--accent);"></i>
+            <h3>Detection History</h3>
+        </div>
+
+        <div id="historyBox" class="history-list"></div>
+    </div>
+
+</div>
+
+<script src="/static/user.js"></script>
+</body>
+</html>

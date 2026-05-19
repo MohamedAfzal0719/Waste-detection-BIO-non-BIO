@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Database
+users.db
+users.db-journal
+
+# Firebase credentials (Keep secure!)
+firebase-admin.json
+
+# YOLO and Media
+runs/
+dataset/
+dataset_yolov8/
+static/uploads/*
+!static/uploads/.gitkeep
+
+# IDEs and OS
+.vscode/
+.idea/
+*.swp
+.DS_Store

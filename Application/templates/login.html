@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SmartBin</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="bg-mesh">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+<div id="mouse-trail"></div>
+
+<script>
+    document.addEventListener('mousemove', (e) => {
+        const trail = document.getElementById('mouse-trail');
+        if (trail) {
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+        }
+    });
+</script>
+
+<div class="auth-container">
+    <div class="glass-card auth-card">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <i class="fas fa-trash-can-arrow-up" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+            <h1 class="title-gradient">SMARTBIN LOGIN</h1>
+            <p style="color: var(--text-muted);">Access your waste management portal</p>
+        </div>
+
+        <form method="POST" action="/do_login">
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email Address" required class="input">
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Password" required class="input">
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                <i class="fas fa-right-to-bracket"></i> Login
+            </button>
+        </form>
+
+        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted);">
+            Don’t have an account? <a href="/register" style="color: var(--primary); text-decoration: none; font-weight: 600;">Register</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
