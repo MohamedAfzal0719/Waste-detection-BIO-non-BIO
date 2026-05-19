@@ -36,7 +36,9 @@ A high-end, AI-powered waste classification and bin level monitoring system. Thi
     pip install -r requirements.txt
     ```
 2.  **Firebase Configuration**:
-    Ensure `firebase-admin.json` is present in the root directory for live data features.
+    Since `firebase-admin.json` contains sensitive credentials, it is ignored by Git. You must obtain or generate this file to enable live features:
+    *   **Option A**: Ask the project creator to securely share the existing `firebase-admin.json` credentials file and place it in the `Application/` directory.
+    *   **Option B (Your own database)**: Create a Firebase project in the [Firebase Console](https://console.firebase.google.com/), navigate to **Project Settings** > **Service Accounts**, click **Generate new private key**, rename the downloaded JSON file to `firebase-admin.json`, and place it in the `Application/` directory.
 3.  **Run the Application**:
     ```bash
     python app.py
